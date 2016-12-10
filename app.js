@@ -22,7 +22,17 @@ var I18n = {
       return I18n._buildMessage(translationString, ...localizedValues);
     }
 
+    console.log(`Missing translation key in ${module.parent.filename}:\n${translationKey}`)
     return I18n._buildMessage(translationKey, ...values);
+  },
+  
+  bundleFromLocale (locale) {
+    for(const lang in I18n.bundles) {
+      const bundle = I18n.bundles[lang];
+      if(bundle.locale === locale)
+        return lang;
+    }
+    return null;
   },
 
   _localizers: {
@@ -72,6 +82,7 @@ var I18n = {
 module.exports.init = I18n.init;
 module.exports.use = I18n.use;
 module.exports.translate = I18n.translate;
+module.exports.bundleFromLocale = I18n.bundleFromLocale;
 
 /***
  * USAGE

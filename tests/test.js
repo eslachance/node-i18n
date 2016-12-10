@@ -32,6 +32,8 @@ let amount = 1234.56;
 
 I18n.init({bundles: bundles, defaultCurrency: 'USD'});
 
+console.log(I18n.bundleFromLocale("fr-FR"));
+
 I18n.use('fr');
 console.log(I18n.translate `Hello ${name}, you have ${amount}:c in your bank account.`);
 
